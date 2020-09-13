@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "serve",
+    "start": "serve public",
     "build": "NODE_ENV=production webpack --config webpack.config.js",
     "build:watch": "webpack --config webpack.config.js --watch"
   },
