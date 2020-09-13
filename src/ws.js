@@ -1,3 +1,5 @@
+// TODO: get host from env vars
+// TODO: add toggle for working with localhost
 import Convert from "ansi-to-html";
 
 document.getElementById("form").addEventListener("submit", main);
@@ -34,11 +36,11 @@ function connect(fixedId) {
 }
 
 function wsUrl(givenId) {
-  const protocol = location.protocol.match(/https/) ? "wss" : "ws";
+  const protocol = givenId || !location.protocol.match(/https/) ? "ws" : "wss";
   const id = givenId || location.pathname.replace("/c/", "").replace(/\//g, "");
   const host = givenId ? "localhost:9000" : location.host;
 
-  return `${protocol}://${host}/api/cast/ws/${id}`;
+  return `${protocol}://${host}/api/session/ws/${id}`;
 }
 
 function handleError(_error) {
