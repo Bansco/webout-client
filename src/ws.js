@@ -64,10 +64,8 @@ function handleOpen(_openEvent) {
 const makeHandleMessage = (convert) => {
   function handleMessage(msgEvent) {
     const output = document.getElementById("output");
-    const newLine = document.createElement("span");
 
-    newLine.innerHTML = convert.toHtml(msgEvent.data);
-    output.appendChild(newLine);
+    output.innerHTML = `${output.innerHTML}${convert.toHtml(msgEvent.data)}`;
     window.scrollTo({ top: output.clientHeight, behavior: "instant" });
   }
 
