@@ -104,3 +104,6 @@ dist
 .tern-port
 
 .vercel
+
+# Webout out file
+public/main.js
