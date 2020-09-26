@@ -37,7 +37,7 @@ function connect(sessionId) {
 
 function wsUrl(sessionId) {
   const isLocalhost = location.host.match("localhost");
-  const protocol = isLocalhost ? "ws" : "w";
+  const protocol = isLocalhost ? "ws" : "wss";
   const host = isLocalhost ? "localhost:9000" : "webout.xyz";
 
   return `${protocol}://${host}/api/session/ws/${sessionId}`;
