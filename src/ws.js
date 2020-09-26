@@ -15,8 +15,8 @@ function main(e) {
 
 let socket;
 
-function connect(fixedId) {
-  const url = wsUrl(fixedId);
+function connect(sessionId) {
+  const url = wsUrl(sessionId);
   if (socket) {
     socket.close();
   }
@@ -35,12 +35,13 @@ function connect(fixedId) {
   removeAlert();
 }
 
-function wsUrl(givenId) {
-  const protocol = givenId || !location.protocol.match(/https/) ? "ws" : "wss";
-  const id = givenId || location.pathname.replace("/c/", "").replace(/\//g, "");
-  const host = givenId ? "localhost:9000" : location.host;
+function wsUrl(sessionId) {
+  const protocol = location.protocol.match(/https/) ? "wss" : "ws";
+  const host = location.host.match("localhost")
+    ? "localhost:9000"
+    : location.host;
 
-  return `${protocol}://${host}/api/session/ws/${id}`;
+  return `${protocol}://${host}/api/session/ws/${sessionId}`;
 }
 
 function handleError(_error) {
