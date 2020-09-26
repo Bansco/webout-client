@@ -36,10 +36,9 @@ function connect(sessionId) {
 }
 
 function wsUrl(sessionId) {
-  const protocol = location.protocol.match(/https/) ? "wss" : "ws";
-  const host = location.host.match("localhost")
-    ? "localhost:9000"
-    : location.host;
+  const isLocalhost = location.host.match("localhost");
+  const protocol = isLocalhost ? "ws" : "w";
+  const host = isLocalhost ? "localhost:9000" : "webout.xyz";
 
   return `${protocol}://${host}/api/session/ws/${sessionId}`;
 }
